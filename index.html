@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Project page for RGGS: Compact Re-Grounded 3D Gaussian Splatting for Sparse-View Indoor Surface Reconstruction."
+  />
+  <title>RGGS: Compact Re-Grounded 3D Gaussian Splatting for Sparse-View Indoor Surface Reconstruction</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <style>
+    :root {
+      --page-bg: #f6f4ef;
+      --surface: #ffffff;
+      --border: #d8dde3;
+      --text-main: #1f2933;
+      --text-muted: #52606d;
+      --shadow: 0 18px 40px rgba(18, 38, 53, 0.08);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top, rgba(33, 75, 99, 0.08), transparent 28%),
+        var(--page-bg);
+      color: var(--text-main);
+    }
+
+    .section {
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .hero-block {
+      margin-bottom: 2rem;
+    }
+
+    .hero-block .title.is-2 {
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .page-tagline {
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .action-row .button {
+      min-width: 130px;
+    }
+
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      margin-top: 1.75rem;
+      padding: 1.5rem;
+    }
+
+    .content-card img,
+    .content-card video {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .section-copy {
+      color: var(--text-main);
+      font-size: 1rem;
+      line-height: 1.85;
+      text-align: left;
+    }
+
+    .contribution-list {
+      color: var(--text-main);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin: 0;
+      padding-left: 1.25rem;
+      text-align: left;
+    }
+
+    .caption-text {
+      color: var(--text-muted);
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .author-line {
+      line-height: 1.7;
+    }
+
+    .author-line a {
+      color: inherit;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding-top: 1.5rem;
+      }
+
+      .content-card {
+        padding: 1rem;
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <div class="container has-text-centered hero-block">
+      <p class="title is-2">RGGS: Compact Re-Grounded 3D Gaussian Splatting for Sparse-View Indoor Surface Reconstruction</p>
+      <p class="subtitle is-5">Project Page</p>
+      <p class="title is-5 mt-2 author-line">
+        <a>Jianan Zou</a> and <a>Haihong Xiao</a>
+      </p>
+      <p class="subtitle is-6 page-tagline">
+        RGGS performs geometry-aware fusion of real-view and generative Gaussian fields for sparse-view indoor surface reconstruction.
+      </p>
+
+      <div class="is-flex is-justify-content-center is-flex-wrap-wrap action-row mt-4">
+        <span class="icon-text mx-1 my-1">
+          <a class="button is-dark" href="https://github.com/EleZou/RGGS" role="button" target="_blank" rel="noopener noreferrer">
+            <span class="icon"><ion-icon name="logo-github" aria-label="Code"></ion-icon></span>
+            <span>Code</span>
+          </a>
+        </span>
+        <span class="icon-text mx-1 my-1">
+          <a class="button is-dark" href="#video-demo" role="button">
+            <span class="icon"><ion-icon name="videocam-outline" aria-label="Video"></ion-icon></span>
+            <span>Video</span>
+          </a>
+        </span>
+        <span class="icon-text mx-1 my-1">
+          <a class="button is-dark" href="#qualitative-results" role="button">
+            <span class="icon"><ion-icon name="images-outline" aria-label="Results"></ion-icon></span>
+            <span>Results</span>
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <div class="container is-max-desktop">
+      <div class="content-card">
+        <p class="title is-3 has-text-centered">Abstract</p>
+        <p class="section-copy">
+          Sparse-view 3D Gaussian Splatting for indoor surface reconstruction is inherently under-constrained, often overfitting the observed views and producing incomplete or unstable geometry in occluded regions. Although existing generative models can provide powerful generative priors to expand visual coverage, directly using generated views as pixel-level supervision often introduces metric drift due to inconsistencies with real observations. In this paper, we present RGGS, a compact Re-Grounded Gaussian Splatting framework that fuses generative priors within the model space while maintaining geometric consistency. Specifically, we first construct two Gaussian fields independently: a base field optimized from real observations and a generative field learned from camera-controlled synthetic views. The two fields are subsequently aligned within a shared coordinate system through a Sim(3) transformation. We then formulate an entropic optimal transport coupling under the Wasserstein-Bures metric to guide field fusion by jointly transporting Gaussian means and anisotropic covariances. The resulting OT-based coupling enables selective transport, distillation, and insertion, effectively integrating reliable generative content while suppressing inconsistent or noisy structures. Finally, we perform a real-view refinement stage that re-projects the fused field onto the manifold induced by real observations, thereby restoring geometric consistency and improving reconstruction accuracy. Extensive experiments on 17 scenes from Replica, ScanNet++, and MipNeRF360 demonstrate that RGGS consistently improves mesh reconstruction quality while achieving competitive novel view synthesis performance. Comprehensive ablation studies further validate the effectiveness of each component.
+        </p>
+      </div>
+
+      <div class="content-card">
+        <p class="title is-3 has-text-centered">Key Contributions</p>
+        <ul class="contribution-list">
+          <li>RGGS identifies metric drift as a core failure mode when generative priors are imposed directly as image-space supervision in sparse-view reconstruction.</li>
+          <li>It introduces a compact re-grounded Gaussian splatting framework that aligns real-view and generative fields through Sim(3) and fuses them with entropic optimal transport under the Wasserstein-Bures metric.</li>
+          <li>It performs OT-guided transport, distillation, and insertion of generative geometry, followed by real-view refinement to improve reconstruction quality while keeping the representation compact.</li>
+        </ul>
+      </div>
+
+      <div class="content-card" id="method-overview">
+        <p class="title is-3 has-text-centered">Method Overview</p>
+        <figure>
+          <img src="./results/pipeline.png" alt="Overview of RGGS." loading="lazy" />
+          <figcaption class="caption-text">
+            <strong>Fig. 2.</strong> Overview of RGGS. Base Gaussians are optimized from sparse real views, Generative Gaussians are learned from synthesized views, and the two fields are fused through Sim(3) alignment, entropic optimal transport, and a final real-only refinement stage.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="content-card" id="video-demo">
+        <p class="title is-3 has-text-centered">Video Demo</p>
+        <figure>
+          <video muted autoplay loop playsinline preload="metadata" controls>
+            <source src="./video/demo_RGGS.mp4" type="video/mp4" />
+          </video>
+          <figcaption class="caption-text">
+            Project demo video for RGGS qualitative mesh reconstruction comparison.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div id="qualitative-results">
+        <div class="content-card">
+          <p class="title is-3 has-text-centered">Mesh Reconstruction on Replica</p>
+          <figure>
+            <img src="./results/com_replica.png" alt="Qualitative mesh reconstruction comparison on the Replica dataset." loading="lazy" />
+            <figcaption class="caption-text">
+              <strong>Fig. 3.</strong> Qualitative comparison on the Replica dataset with 5 training views.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="content-card">
+          <p class="title is-3 has-text-centered">Mesh Reconstruction on ScanNet++</p>
+          <figure>
+            <img src="./results/com_scannetpp.png" alt="Qualitative mesh reconstruction comparison on the ScanNet++ dataset." loading="lazy" />
+            <figcaption class="caption-text">
+              <strong>Fig. 4.</strong> Qualitative comparison on the ScanNet++ dataset with 5 training views.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="content-card">
+          <p class="title is-3 has-text-centered">Novel View Synthesis</p>
+          <figure>
+            <img src="./results/com_NVS.png" alt="Qualitative novel view synthesis comparison." loading="lazy" />
+            <figcaption class="caption-text">
+              <strong>Fig. 5.</strong> Qualitative comparison of novel view synthesis results on Replica, ScanNet++, and indoor MipNeRF360 scenes with 5 training views. Red boxes highlight representative local details.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
