@@ -8,652 +8,217 @@
     content="Project page for RGGS: Compact Re-Grounded 3D Gaussian Splatting for Sparse-View Indoor Surface Reconstruction."
   />
   <title>RGGS: Compact Re-Grounded 3D Gaussian Splatting for Sparse-View Indoor Surface Reconstruction</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <style>
     :root {
-      --page-bg: #f2efe8;
-      --page-accent: #12384d;
-      --page-accent-soft: #dbe8ee;
-      --page-border: rgba(18, 56, 77, 0.14);
-      --surface: rgba(255, 255, 255, 0.84);
-      --surface-strong: #ffffff;
-      --text-main: #16232c;
-      --text-muted: #50626d;
-      --highlight: #9f6b2f;
-      --shadow-soft: 0 20px 44px rgba(22, 35, 44, 0.08);
-      --shadow-strong: 0 24px 60px rgba(18, 56, 77, 0.14);
-    }
-
-    html {
-      scroll-behavior: smooth;
+      --page-bg: #f6f4ef;
+      --surface: #ffffff;
+      --border: #d8dde3;
+      --text-main: #1f2933;
+      --text-muted: #52606d;
+      --shadow: 0 18px 40px rgba(18, 38, 53, 0.08);
     }
 
     body {
-      margin: 0;
-      font-family: "IBM Plex Sans", sans-serif;
-      color: var(--text-main);
       background:
-        radial-gradient(circle at top left, rgba(18, 56, 77, 0.16), transparent 28%),
-        radial-gradient(circle at top right, rgba(159, 107, 47, 0.12), transparent 26%),
-        linear-gradient(180deg, #f5f1e8 0%, #f2efe8 46%, #ede8dd 100%);
-      position: relative;
-      min-height: 100vh;
+        radial-gradient(circle at top, rgba(33, 75, 99, 0.08), transparent 28%),
+        var(--page-bg);
+      color: var(--text-main);
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(18, 56, 77, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(18, 56, 77, 0.03) 1px, transparent 1px);
-      background-size: 42px 42px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.32), transparent 86%);
+    .section {
+      padding: 2.5rem 1.5rem 4rem;
     }
 
-    .page-shell {
-      position: relative;
-      z-index: 1;
-      padding: 2rem 1.35rem 4.5rem;
+    .hero-block {
+      margin-bottom: 2rem;
     }
 
-    .main-frame {
-      max-width: 1220px;
+    .hero-block .title.is-2 {
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .page-tagline {
+      color: var(--text-muted);
+      max-width: 760px;
       margin: 0 auto;
     }
 
-    .hero-panel {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 34px;
-      padding: 1.25rem;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 245, 238, 0.7)),
-        rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow-strong);
-      backdrop-filter: blur(16px);
+    .action-row .button {
+      min-width: 130px;
     }
 
-    .hero-panel::after {
-      content: "";
-      position: absolute;
-      right: -8%;
-      top: -22%;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(18, 56, 77, 0.14), transparent 72%);
+    .content-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      margin-top: 1.75rem;
+      padding: 1.5rem;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-      gap: 1.35rem;
-      align-items: stretch;
+    .content-card img,
+    .content-card video {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
     }
 
-    .hero-copy,
-    .hero-visual {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-copy {
-      padding: 1rem 0.8rem 0.6rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-width: 0;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      width: fit-content;
-      padding: 0.5rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(18, 56, 77, 0.12);
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--page-accent);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 0.55rem;
-      height: 0.55rem;
-      border-radius: 50%;
-      background: var(--highlight);
-      box-shadow: 0 0 0 6px rgba(159, 107, 47, 0.12);
-    }
-
-    .hero-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2.8rem, 5.6vw, 5rem);
-      font-weight: 700;
-      line-height: 0.96;
-      letter-spacing: -0.03em;
-      margin: 0;
-      max-width: 12ch;
-    }
-
-    .hero-subtitle {
-      font-size: 1.06rem;
+    .section-copy {
+      color: var(--text-main);
+      font-size: 1rem;
       line-height: 1.85;
+      text-align: left;
+    }
+
+    .contribution-list {
+      color: var(--text-main);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin: 0;
+      padding-left: 1.25rem;
+      text-align: left;
+    }
+
+    .caption-text {
       color: var(--text-muted);
-      max-width: 61ch;
-      margin: 1.2rem 0 1.45rem;
+      margin-top: 1rem;
+      text-align: left;
     }
 
     .author-line {
-      font-size: 1rem;
-      line-height: 1.9;
-      font-weight: 500;
-      color: var(--text-main);
-      margin-bottom: 1rem;
+      line-height: 1.8;
     }
 
     .author-line span {
       display: inline-block;
-      margin-right: 0.35rem;
-    }
-
-    .action-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .action-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      padding: 0.88rem 1.2rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-    }
-
-    .action-button.primary {
-      background: var(--page-accent);
-      color: #fff;
-      box-shadow: 0 16px 30px rgba(18, 56, 77, 0.22);
-    }
-
-    .action-button.secondary {
-      color: var(--page-accent);
-      border: 1px solid rgba(18, 56, 77, 0.14);
-      background: rgba(255, 255, 255, 0.75);
-    }
-
-    .action-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 32px rgba(18, 56, 77, 0.15);
-    }
-
-    .metric-row {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.85rem;
-      margin-top: 0.35rem;
-    }
-
-    .metric-chip {
-      padding: 0.95rem 1rem;
-      border-radius: 20px;
-      border: 1px solid rgba(18, 56, 77, 0.1);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(239, 245, 248, 0.7));
-      box-shadow: var(--shadow-soft);
-      min-width: 0;
-    }
-
-    .metric-value {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 2rem;
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-
-    .metric-label {
-      font-size: 0.84rem;
-      line-height: 1.45;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-    }
-
-    .hero-visual {
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-
-    .figure-card,
-    .content-card {
-      border: 1px solid var(--page-border);
-      background: var(--surface);
-      border-radius: 28px;
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(14px);
-    }
-
-    .figure-card {
-      padding: 1rem;
-      height: 100%;
-    }
-
-    .figure-card img,
-    .content-card img,
-    .content-card video {
-      width: 100%;
-      display: block;
-      height: auto;
-      border-radius: 20px;
-      background: #edf3f6;
-    }
-
-    .figure-label {
-      display: inline-block;
-      margin-bottom: 0.75rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.76rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: rgba(18, 56, 77, 0.08);
-      color: var(--page-accent);
-    }
-
-    .caption-text {
-      margin-top: 0.95rem;
-      font-size: 0.96rem;
-      line-height: 1.75;
-      color: var(--text-muted);
-    }
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-      gap: 1.15rem;
-      margin-top: 1.2rem;
-    }
-
-    .content-card {
-      padding: 1.4rem;
-      overflow: hidden;
-    }
-
-    .card-label {
-      display: inline-block;
-      margin-bottom: 0.85rem;
-      padding: 0.3rem 0.68rem;
-      border-radius: 999px;
-      background: rgba(159, 107, 47, 0.1);
-      color: #7d5423;
-      font-size: 0.77rem;
-      font-weight: 700;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-    }
-
-    .card-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2rem, 3vw, 2.7rem);
-      line-height: 0.98;
-      margin: 0 0 0.95rem;
-    }
-
-    .section-copy {
-      font-size: 1rem;
-      line-height: 1.9;
-      color: var(--text-main);
-    }
-
-    .contribution-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    .contribution-list li {
-      position: relative;
-      padding: 0.95rem 1rem 0.95rem 3.2rem;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(18, 56, 77, 0.08);
-      line-height: 1.7;
-    }
-
-    .contribution-list li::before {
-      content: counter(contrib);
-      counter-increment: contrib;
-      position: absolute;
-      left: 1rem;
-      top: 0.95rem;
-      width: 1.55rem;
-      height: 1.55rem;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #fff;
-      background: var(--page-accent);
-    }
-
-    .contribution-list {
-      counter-reset: contrib;
-    }
-
-    .results-stack {
-      display: grid;
-      gap: 1.15rem;
-      margin-top: 1.15rem;
-    }
-
-    .showcase-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .showcase-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(18, 56, 77, 0.03));
-    }
-
-    .showcase-head {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.75rem;
-      align-items: baseline;
-      margin-bottom: 1rem;
-    }
-
-    .showcase-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(1.85rem, 2.5vw, 2.45rem);
-      margin: 0;
-      line-height: 1;
-    }
-
-    .showcase-kicker {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .results-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.15rem;
-    }
-
-    .results-grid .content-card:last-child {
-      grid-column: 1 / -1;
-    }
-
-    .footer-note {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      margin-top: 1.5rem;
-    }
-
-    .hero-panel,
-    .content-card,
-    .metric-chip {
-      animation: rise-in 540ms ease both;
-    }
-
-    .metric-chip:nth-child(2) {
-      animation-delay: 60ms;
-    }
-
-    .metric-chip:nth-child(3) {
-      animation-delay: 120ms;
-    }
-
-    .metric-chip:nth-child(4) {
-      animation-delay: 180ms;
-    }
-
-    @keyframes rise-in {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid,
-      .section-grid,
-      .results-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .metric-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .hero-title {
-        max-width: none;
-      }
+      margin: 0 0.15rem;
     }
 
     @media (max-width: 768px) {
-      .page-shell {
-        padding: 1.1rem 0.95rem 3.2rem;
+      .section {
+        padding-top: 1.5rem;
       }
 
-      .hero-panel,
-      .content-card,
-      .figure-card {
-        border-radius: 24px;
-      }
-
-      .hero-panel {
-        padding: 0.9rem;
-      }
-
-      .hero-copy,
       .content-card {
-        padding: 1.05rem;
-      }
-
-      .hero-title {
-        font-size: clamp(2.5rem, 14vw, 4rem);
-      }
-
-      .metric-row {
-        grid-template-columns: 1fr;
-      }
-
-      .action-row {
-        gap: 0.7rem;
-      }
-
-      .action-button {
-        width: 100%;
-        justify-content: center;
+        padding: 1rem;
+        border-radius: 18px;
       }
     }
   </style>
 </head>
 <body>
-  <main class="page-shell">
-    <div class="main-frame">
-      <section class="hero-panel">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <span class="eyebrow">RGGS Project Page</span>
-            <h1 class="hero-title">RGGS: Compact Re-Grounded 3D Gaussian Splatting for Sparse-View Indoor Surface Reconstruction</h1>
-            <p class="hero-subtitle">
-              RGGS fuses generative priors in Gaussian model space instead of forcing them as unstable pixel-level supervision, enabling more complete indoor surface reconstruction while staying compact and geometrically grounded.
-            </p>
-            <div class="author-line">
-              <span>Haihong Xiao,</span>
-              <span>Jianan Zou,</span>
-              <span>Wenxiong Kang,</span>
-              <span>Ying He.</span>
-            </div>
-            <div class="action-row">
-              <a class="action-button primary" href="https://github.com/EleZou/RGGS" target="_blank" rel="noopener noreferrer">
-                <ion-icon name="logo-github" aria-hidden="true"></ion-icon>
-                <span>Code</span>
-              </a>
-              <a class="action-button secondary" href="#video-demo">
-                <ion-icon name="videocam-outline" aria-hidden="true"></ion-icon>
-                <span>Watch Video</span>
-              </a>
-              <a class="action-button secondary" href="#qualitative-results">
-                <ion-icon name="images-outline" aria-hidden="true"></ion-icon>
-                <span>See Results</span>
-              </a>
-            </div>
-            <div class="metric-row">
-              <div class="metric-chip">
-                <div class="metric-value">17</div>
-                <div class="metric-label">Scenes across Replica, ScanNet++, and indoor MipNeRF360.</div>
-              </div>
-              <div class="metric-chip">
-                <div class="metric-value">4.4x</div>
-                <div class="metric-label">Fewer Gaussians than G4Splat in the teaser comparison.</div>
-              </div>
-              <div class="metric-chip">
-                <div class="metric-value">2.2x</div>
-                <div class="metric-label">Smaller exported mesh size while keeping stronger geometry.</div>
-              </div>
-              <div class="metric-chip">
-                <div class="metric-value">OT</div>
-                <div class="metric-label">Wasserstein-Bures transport guides alignment, fusion, and refinement.</div>
-              </div>
-            </div>
-          </div>
+  <section class="section">
+    <div class="container has-text-centered hero-block">
+      <p class="title is-2">RGGS: Compact Re-Grounded 3D Gaussian Splatting for Sparse-View Indoor Surface Reconstruction</p>
+      <p class="subtitle is-5">Project Page</p>
+      <p class="title is-5 mt-2 author-line">
+        <span>Haihong Xiao,</span>
+        <span>Jianan Zou,</span>
+        <span>Wenxiong Kang,</span>
+        <span>Ying He.</span>
+      </p>
+      <p class="subtitle is-6 page-tagline">
+        RGGS performs geometry-aware fusion of real-view and generative Gaussian fields for sparse-view indoor surface reconstruction.
+      </p>
 
-          <div class="hero-visual">
-            <div class="figure-card">
-              <span class="figure-label">Teaser Figure</span>
-              <img src="./results/teaser.png" alt="RGGS teaser figure." loading="eager" />
-              <p class="caption-text">
-                <strong>Fig. 1.</strong> Re-ground Gaussians, recover geometry. RGGS transfers reliable generative structure into the real-view Gaussian field through geometry-aware optimal transport and recovers faithful sparse-view indoor surfaces with a more compact representation.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div class="is-flex is-justify-content-center is-flex-wrap-wrap action-row mt-4">
+        <span class="icon-text mx-1 my-1">
+          <a class="button is-dark" href="https://github.com/EleZou/RGGS" role="button" target="_blank" rel="noopener noreferrer">
+            <span class="icon"><ion-icon name="logo-github" aria-label="Code"></ion-icon></span>
+            <span>Code</span>
+          </a>
+        </span>
+        <span class="icon-text mx-1 my-1">
+          <a class="button is-dark" href="#video-demo" role="button">
+            <span class="icon"><ion-icon name="videocam-outline" aria-label="Video"></ion-icon></span>
+            <span>Video</span>
+          </a>
+        </span>
+        <span class="icon-text mx-1 my-1">
+          <a class="button is-dark" href="#qualitative-results" role="button">
+            <span class="icon"><ion-icon name="images-outline" aria-label="Results"></ion-icon></span>
+            <span>Results</span>
+          </a>
+        </span>
+      </div>
+    </div>
 
-      <section class="section-grid">
-        <article class="content-card">
-          <span class="card-label">Abstract</span>
-          <h2 class="card-title">Grounded fusion instead of drifting supervision</h2>
-          <p class="section-copy">
-            Sparse-view 3D Gaussian Splatting for indoor surface reconstruction is inherently under-constrained, often overfitting the observed views and producing incomplete or unstable geometry in occluded regions. Although existing generative models can provide powerful generative priors to expand visual coverage, directly using generated views as pixel-level supervision often introduces metric drift due to inconsistencies with real observations. In this paper, we present RGGS, a compact Re-Grounded Gaussian Splatting framework that fuses generative priors within the model space while maintaining geometric consistency. Specifically, we first construct two Gaussian fields independently: a base field optimized from real observations and a generative field learned from camera-controlled synthetic views. The two fields are subsequently aligned within a shared coordinate system through a Sim(3) transformation. We then formulate an entropic optimal transport coupling under the Wasserstein-Bures metric to guide field fusion by jointly transporting Gaussian means and anisotropic covariances. The resulting OT-based coupling enables selective transport, distillation, and insertion, effectively integrating reliable generative content while suppressing inconsistent or noisy structures. Finally, we perform a real-view refinement stage that re-projects the fused field onto the manifold induced by real observations, thereby restoring geometric consistency and improving reconstruction accuracy.
-          </p>
-        </article>
+    <div class="container is-max-desktop">
+      <div class="content-card">
+        <p class="title is-3 has-text-centered">Abstract</p>
+        <p class="section-copy">
+          Sparse-view 3D Gaussian Splatting for indoor surface reconstruction is inherently under-constrained, often overfitting the observed views and producing incomplete or unstable geometry in occluded regions. Although existing generative models can provide powerful generative priors to expand visual coverage, directly using generated views as pixel-level supervision often introduces metric drift due to inconsistencies with real observations. In this paper, we present RGGS, a compact Re-Grounded Gaussian Splatting framework that fuses generative priors within the model space while maintaining geometric consistency. Specifically, we first construct two Gaussian fields independently: a base field optimized from real observations and a generative field learned from camera-controlled synthetic views. The two fields are subsequently aligned within a shared coordinate system through a Sim(3) transformation. We then formulate an entropic optimal transport coupling under the Wasserstein-Bures metric to guide field fusion by jointly transporting Gaussian means and anisotropic covariances. The resulting OT-based coupling enables selective transport, distillation, and insertion, effectively integrating reliable generative content while suppressing inconsistent or noisy structures. Finally, we perform a real-view refinement stage that re-projects the fused field onto the manifold induced by real observations, thereby restoring geometric consistency and improving reconstruction accuracy. Extensive experiments on 17 scenes from Replica, ScanNet++, and MipNeRF360 demonstrate that RGGS consistently improves mesh reconstruction quality while achieving competitive novel view synthesis performance. Comprehensive ablation studies further validate the effectiveness of each component.
+        </p>
+      </div>
 
-        <article class="content-card">
-          <span class="card-label">Contributions</span>
-          <h2 class="card-title">Why RGGS works</h2>
-          <ol class="contribution-list">
-            <li>RGGS identifies metric drift as a central failure mode when generated views are directly imposed as image-space supervision for sparse-view reconstruction.</li>
-            <li>It introduces a compact re-grounded Gaussian splatting pipeline that aligns real-view and generative fields through Sim(3) and fuses them with entropic optimal transport under the Wasserstein-Bures metric.</li>
-            <li>It performs OT-guided transport, distillation, and insertion of generative geometry, then re-projects the fused representation back onto real observations through a final refinement stage.</li>
-          </ol>
-        </article>
-      </section>
+      <div class="content-card">
+        <p class="title is-3 has-text-centered">Key Contributions</p>
+        <ul class="contribution-list">
+          <li>RGGS identifies metric drift as a core failure mode when generative priors are imposed directly as image-space supervision in sparse-view reconstruction.</li>
+          <li>It introduces a compact re-grounded Gaussian splatting framework that aligns real-view and generative fields through Sim(3) and fuses them with entropic optimal transport under the Wasserstein-Bures metric.</li>
+          <li>It performs OT-guided transport, distillation, and insertion of generative geometry, followed by real-view refinement to improve reconstruction quality while keeping the representation compact.</li>
+        </ul>
+      </div>
 
-      <section class="results-stack">
-        <article class="content-card showcase-card" id="video-demo">
-          <div class="showcase-head">
-            <div>
-              <span class="showcase-kicker">Video Demo</span>
-              <h2 class="showcase-title">Compact reconstruction in motion</h2>
-            </div>
-          </div>
+      <div class="content-card" id="teaser-overview">
+        <p class="title is-3 has-text-centered">Overview</p>
+        <figure>
+          <img src="./results/teaser.png" alt="RGGS teaser figure." loading="lazy" />
+          <figcaption class="caption-text">
+            <strong>Fig. 1.</strong> Re-ground Gaussians, recover geometry. RGGS fuses generative priors while preserving geometric consistency via optimal transport, enabling complete and faithful surface reconstruction from sparse indoor views. It achieves lower Chamfer distance with a more compact Gaussian and mesh representation.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="content-card" id="video-demo">
+        <p class="title is-3 has-text-centered">Video Demo</p>
+        <figure>
           <video muted autoplay loop playsinline preload="metadata" controls>
             <source src="./video/demo_RGGS.mp4" type="video/mp4" />
           </video>
-          <p class="caption-text">
-            Demo video for qualitative mesh reconstruction comparison under sparse-view indoor settings.
-          </p>
-        </article>
+          <figcaption class="caption-text">
+            Project demo video for RGGS qualitative mesh reconstruction comparison.
+          </figcaption>
+        </figure>
+      </div>
 
-        <div class="results-grid" id="qualitative-results">
-          <article class="content-card showcase-card">
-            <div class="showcase-head">
-              <div>
-                <span class="showcase-kicker">Replica</span>
-                <h2 class="showcase-title">Mesh reconstruction on Replica</h2>
-              </div>
-            </div>
+      <div id="qualitative-results">
+        <div class="content-card">
+          <p class="title is-3 has-text-centered">Mesh Reconstruction on Replica</p>
+          <figure>
             <img src="./results/com_replica.png" alt="Qualitative mesh reconstruction comparison on the Replica dataset." loading="lazy" />
-            <p class="caption-text">
+            <figcaption class="caption-text">
               <strong>Fig. 3.</strong> Qualitative comparison on the Replica dataset with 5 training views.
-            </p>
-          </article>
-
-          <article class="content-card showcase-card">
-            <div class="showcase-head">
-              <div>
-                <span class="showcase-kicker">ScanNet++</span>
-                <h2 class="showcase-title">Mesh reconstruction on ScanNet++</h2>
-              </div>
-            </div>
-            <img src="./results/com_scannetpp.png" alt="Qualitative mesh reconstruction comparison on the ScanNet++ dataset." loading="lazy" />
-            <p class="caption-text">
-              <strong>Fig. 4.</strong> Qualitative comparison on the ScanNet++ dataset with 5 training views.
-            </p>
-          </article>
-
-          <article class="content-card showcase-card">
-            <div class="showcase-head">
-              <div>
-                <span class="showcase-kicker">Novel View Synthesis</span>
-                <h2 class="showcase-title">Cross-dataset visual fidelity</h2>
-              </div>
-            </div>
-            <img src="./results/com_NVS.png" alt="Qualitative novel view synthesis comparison." loading="lazy" />
-            <p class="caption-text">
-              <strong>Fig. 5.</strong> Qualitative comparison of novel view synthesis results on Replica, ScanNet++, and indoor MipNeRF360 scenes with 5 training views. Red boxes highlight representative local details.
-            </p>
-          </article>
+            </figcaption>
+          </figure>
         </div>
-      </section>
 
-      <p class="footer-note">
-        RGGS project page - compact sparse-view indoor surface reconstruction with re-grounded Gaussian fusion.
-      </p>
+        <div class="content-card">
+          <p class="title is-3 has-text-centered">Mesh Reconstruction on ScanNet++</p>
+          <figure>
+            <img src="./results/com_scannetpp.png" alt="Qualitative mesh reconstruction comparison on the ScanNet++ dataset." loading="lazy" />
+            <figcaption class="caption-text">
+              <strong>Fig. 4.</strong> Qualitative comparison on the ScanNet++ dataset with 5 training views.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="content-card">
+          <p class="title is-3 has-text-centered">Novel View Synthesis</p>
+          <figure>
+            <img src="./results/com_NVS.png" alt="Qualitative novel view synthesis comparison." loading="lazy" />
+            <figcaption class="caption-text">
+              <strong>Fig. 5.</strong> Qualitative comparison of novel view synthesis results on Replica, ScanNet++, and indoor MipNeRF360 scenes with 5 training views. Red boxes highlight representative local details.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
     </div>
-  </main>
+  </section>
 </body>
 </html>
