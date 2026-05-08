@@ -82,6 +82,8 @@
       margin: 0;
       padding-left: 1.25rem;
       text-align: left;
+      list-style: decimal;
+      list-style-position: outside;
     }
 
     .caption-text {
@@ -158,11 +160,11 @@
 
       <div class="content-card">
         <p class="title is-3 has-text-centered">Key Contributions</p>
-        <ul class="contribution-list">
+        <ol class="contribution-list">
           <li>RGGS identifies metric drift as a core failure mode when generative priors are imposed directly as image-space supervision in sparse-view reconstruction.</li>
           <li>It introduces a compact re-grounded Gaussian splatting framework that aligns real-view and generative fields through Sim(3) and fuses them with entropic optimal transport under the Wasserstein-Bures metric.</li>
           <li>It performs OT-guided transport, distillation, and insertion of generative geometry, followed by real-view refinement to improve reconstruction quality while keeping the representation compact.</li>
-        </ul>
+        </ol>
       </div>
 
       <div class="content-card" id="teaser-overview">
