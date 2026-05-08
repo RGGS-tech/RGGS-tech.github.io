@@ -101,6 +101,13 @@
       margin: 0 0.15rem;
     }
 
+    .affiliation-line {
+      color: var(--text-muted);
+      max-width: 860px;
+      margin: 0.5rem auto 0;
+      line-height: 1.7;
+    }
+
     @media (max-width: 768px) {
       .section {
         padding-top: 1.5rem;
@@ -119,10 +126,15 @@
       <p class="title is-2">RGGS: Compact Re-Grounded 3D Gaussian Splatting for Sparse-View Indoor Surface Reconstruction</p>
       <p class="subtitle is-5">Project Page</p>
       <p class="title is-5 mt-2 author-line">
-        <span>Haihong Xiao,</span>
-        <span>Jianan Zou,</span>
-        <span>Wenxiong Kang,</span>
-        <span>Ying He.</span>
+        <span>Jianan Zou<sup>2</sup>,</span>
+        <span>Haihong Xiao<sup>1</sup>,</span>
+        <span>Wenxiong Kang<sup>2</sup>,</span>
+        <span>Ying He<sup>3</sup>.</span>
+      </p>
+      <p class="subtitle is-6 affiliation-line">
+        <sup>1</sup> Hefei University of Technology &nbsp;|&nbsp;
+        <sup>2</sup> South China University of Technology &nbsp;|&nbsp;
+        <sup>3</sup> Nanyang Technological University
       </p>
       <p class="subtitle is-6 page-tagline">
         RGGS performs geometry-aware fusion of real-view and generative Gaussian fields for sparse-view indoor surface reconstruction.
